@@ -1,0 +1,56 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---------- Virtual environments ----------
+venv/
+.venv/
+env/
+ENV/
+
+# ---------- Jupyter ----------
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# ---------- Data (raw data is large; keep it out of git) ----------
+# Raw Kaggle file (~119k rows). Download it yourself and put it here.
+data/raw/
+data/hotel_bookings.csv
+# Keep the cleaned dataset only if it is small; uncomment to ignore it too
+# data/clean/
+# data/*.csv
+
+# ---------- Models ----------
+# Trained models can be large and are re-creatable with src/train.py.
+# Remove these two lines if you want to commit the final .pkl files,
+# which the deployed Streamlit app needs.
+# models/*.pkl
+# models/*.joblib
+
+# ---------- Streamlit ----------
+.streamlit/secrets.toml
+
+# ---------- Secrets and env files ----------
+.env
+.env.*
+*.key
+*.pem
+
+# ---------- OS / editor ----------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ---------- Logs and temp ----------
+*.log
+*.tmp
+.cache/
