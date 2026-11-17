@@ -54,3 +54,4 @@ Thumbs.db
 *.log
 *.tmp
 .cache/
+git-commit-reference.md
