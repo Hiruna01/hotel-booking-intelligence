@@ -34,4 +34,6 @@ def build_preprocessor(num_cols, cat_cols):
     preprocess = ColumnTransformer([
         ("num", num_pipe, num_cols),
         ("cat", cat_pipe, cat_cols),
-])
+        ])
+
+    return preprocess
