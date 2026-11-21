@@ -15,17 +15,25 @@ def add_features(df):
 
     df["season"] = df["arrival_date_month"].map(season_map)
 
-def build_preprocessor(num_cols, cat_cols):
+def build_preprocessor(num_cols, cat_cols, poly_degree=None):
     from sklearn.compose import ColumnTransformer
     from sklearn.pipeline import Pipeline
     from sklearn.impute import SimpleImputer
     from sklearn.preprocessing import StandardScaler, OneHotEncoder
+    from sklearn.preprocessing import PolynomialFeatures
 
 
-    num_pipe = Pipeline([
-        ("imp", SimpleImputer(strategy="median")),
-        ("sc",  StandardScaler()),
-    ])
+    num_steps = [
+    ("imp", SimpleImputer(strategy="median")),
+    ("sc",  StandardScaler()),
+]
+    if poly_degree:
+        num_steps += [
+            ("poly", PolynomialFeatures(degree=poly_degree, include_bias=False)),
+            ("sc2",  StandardScaler()),
+        ]
+    num_pipe = Pipeline(num_steps)     # build the Pipeline last
+
     cat_pipe = Pipeline([
         ("imp", SimpleImputer(strategy="most_frequent")),
         ("oh",  OneHotEncoder(handle_unknown="infrequent_if_exist",
